@@ -1,0 +1,110 @@
+entity VehicleRule {
+	key String required,
+    name String required,
+    ruleLanguage RuleLanguage required,
+    description TextBlob required,
+    condition TextBlob required,
+    comment TextBlob
+}
+
+entity VehicleRuleGroup {
+	key String required,
+    name String required,
+    type VehicleRuleGroupType required,
+    description TextBlob required,
+    comment TextBlob
+}
+
+entity StockView {
+	key String required,
+    name String required,
+    description TextBlob required,
+    comment TextBlob
+}
+
+entity TechnicalUser {
+    userId String required,
+    applicationName String required,
+    apiToken String required
+}
+
+entity Market {
+	key String required,
+    name String required,
+    isoCode String required,
+    locales String,
+    texts String
+}
+
+entity EquipmentCategory {
+	code String required,
+	name String required,
+    vehicleCategory VehicleCategory required,
+  	description TextBlob,
+    texts String,
+}
+
+entity EquipmentGroup {
+	code String required,
+	name String required,
+    vehicleCategory VehicleCategory required,
+  	description TextBlob,
+    texts String
+}
+
+entity Equipment {
+	code String required,
+	name String required,
+    model String,
+    nst String,
+    equipmentType EquipmentType required,
+    visbility EquipmentVisibility required,
+    vehicleCategory VehicleCategory required,
+    texts String
+}
+
+entity EquipmentMapping {
+    type String required,
+    vehicleCategory VehicleCategory required,
+    description TextBlob required,
+    comment TextBlob
+}
+
+relationship OneToMany {
+	StockView{vehicleFilterGroup(name)} to VehicleFilterGroup,
+}
+
+relationship ManyToOne {
+	EquipmentGroup{equipmentCategory(name)} to EquipmentCategory{equipmentGroup(name)},
+    StockView{technicalUser(userId)} to TechnicalUser,
+}
+
+relationship ManyToMany {
+    VehicleRuleGroup{vehicleFilter(name)} to VehicleRule,
+    EquipmentMapping{equipment(code)} to Equipment,
+	VehicleRuleGroup{market(name)} to Market,
+    StockView{market(name)} to Market,
+    EquipmentCategory{market(name)} to Market,
+    EquipmentGroup{market(name)} to Market,
+	Equipment{equipmentGroup(name)} to EquipmentGroup{equipment(name)},
+}
+
+enum VehicleCategory {
+    PASSENGER, VAN_PRIVATE, VAN_COMMERCIAL
+} 
+
+enum RuleLanguage {
+	MVEL, GROOVY
+}
+
+enum EquipmentVisibility {
+	Wholesale, Retail, Customer
+}
+
+enum VehicleRuleGroupType {
+	FilterRule, ValidationRule, MarketingRule, CPOConfiguration, DFSAccess, PENAccess
+}
+
+enum EquipmentType {
+	EQUIPMENT, PAINT, UPHOLSTERY
+}
