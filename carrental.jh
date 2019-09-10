@@ -1,0 +1,24 @@
+entity Offer {
+	additional String,
+    carType String,
+    location String,
+    price Number, 
+    returnDate LocalDate,
+    startDate LocalDate
+}
+
+entity Car {
+	carType String,
+    licenseNumber String, 
+    motor String,
+    numDoors Number,
+    parkingSlot String,
+    producer String,
+    status String
+}
+relationship OneToMany {
+	Car{offer} to Offer{car}
+}
+
+paginate Offer, Car with infinite-scroll
+service all with serviceImpl except Offer, Car
