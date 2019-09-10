@@ -4,6 +4,10 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     RouterModule.forChild([
+      {
+        path: 'vehicle-rule',
+        loadChildren: () => import('./vehicle-rule/vehicle-rule.module').then(m => m.JhipsterSampleApplicationVehicleRuleModule)
+      }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
   ],

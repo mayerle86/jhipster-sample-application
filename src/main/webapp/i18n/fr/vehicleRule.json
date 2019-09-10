@@ -1,0 +1,26 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "vehicleRule": {
+      "home": {
+        "title": "VehicleRules",
+        "createLabel": "Créer un nouveau Vehicle Rule",
+        "createOrEditLabel": "Créer ou éditer un Vehicle Rule",
+        "notFound": "Aucun Vehicle Rule trouvé"
+      },
+      "created": "Un nouveau Vehicle Rule a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Vehicle Rule avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Vehicle Rule avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Vehicle Rule {{ id }} ?"
+      },
+      "detail": {
+        "title": "Vehicle Rule"
+      },
+      "key": "Key",
+      "name": "Name",
+      "description": "Description",
+      "condition": "Condition",
+      "comment": "Comment"
+    }
+  }
+}
