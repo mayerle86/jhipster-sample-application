@@ -1,0 +1,7 @@
+entity VehicleRule {
+	key String required,
+    name String required,
+    description TextBlob required,
+    condition TextBlob required,
+    comment TextBlob
+}
